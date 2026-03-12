@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import { useInView, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
 import { GraduationCap, Award, Users, Target } from 'lucide-react';
-import profilePhoto from 'figma:asset/d1e59756476d01eebb62f00808f4342e9bb0702e.png';
+import profilePhoto from '@/assets/d1e59756476d01eebb62f00808f4342e9bb0702e.png';
 
 export function About() {
   const ref = useRef(null);

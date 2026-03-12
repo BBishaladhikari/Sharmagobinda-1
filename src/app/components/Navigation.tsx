@@ -1,7 +1,7 @@
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { Menu, X, Sparkles, Zap, Circle } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
-import profilePhoto from 'figma:asset/d1e59756476d01eebb62f00808f4342e9bb0702e.png';
+import profilePhoto from '@/assets/d1e59756476d01eebb62f00808f4342e9bb0702e.png';
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -13,10 +13,6 @@ export function Navigation() {
   // Scroll progress
   const { scrollYProgress } = useScroll();
   const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
-
-  // Mouse tracking for magnetic effect
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,22 +32,12 @@ export function Navigation() {
       }
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      if (navRef.current) {
-        const rect = navRef.current.getBoundingClientRect();
-        mouseX.set(e.clientX - rect.left);
-        mouseY.set(e.clientY - rect.top);
-      }
-    };
-
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('mousemove', handleMouseMove);
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [mouseX, mouseY]);
+  }, []);
 
   const navLinks = [
     { href: '#about', label: 'About', icon: Circle },

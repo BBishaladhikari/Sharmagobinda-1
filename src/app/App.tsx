@@ -10,8 +10,6 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { Preloader } from './components/Preloader';
 import { BackToTop } from './components/BackToTop';
-import { MagneticCursor } from './components/MagneticCursor';
-import { CustomCursor } from './components/CustomCursor';
 import { ThemeToggle } from './components/ThemeToggle';
 import { ThemeProvider } from './context/ThemeContext';
 import { ErrorBoundary } from './components/ErrorBoundary';
@@ -34,8 +32,6 @@ export default function App() {
           transition={{ duration: 0.6 }}
           className="relative min-h-screen bg-[#0A0B14]"
         >
-          <CustomCursor />
-          <MagneticCursor />
           <ThemeToggle />
           <Navigation />
           <main>
