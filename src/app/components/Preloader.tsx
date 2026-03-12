@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
-import profilePhoto from 'figma:asset/d1e59756476d01eebb62f00808f4342e9bb0702e.png';
+import profilePhoto from '@/assets/d1e59756476d01eebb62f00808f4342e9bb0702e.png';
 
 export function Preloader({ onComplete }: { onComplete: () => void }) {
   const [progress, setProgress] = useState(0);

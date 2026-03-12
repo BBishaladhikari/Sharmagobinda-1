@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useSpring, useTransform, useAnimationControls } from 'motion/react';
+import { motion, useTransform, useAnimationControls } from 'motion/react';
 import { useInView } from 'motion/react';
 import { useRef, useState, useEffect } from 'react';
 import { ExternalLink, Github, Eye, Sparkles, Zap, Code2, Palette, Grid3x3, List, Star } from 'lucide-react';
@@ -403,32 +403,7 @@ function ProjectCard({
   viewMode: 'grid' | 'featured';
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), {
-    stiffness: 150,
-    damping: 20,
-  });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), {
-    stiffness: 150,
-    damping: 20,
-  });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    mouseX.set((e.clientX - centerX) / (rect.width / 2));
-    mouseY.set((e.clientY - centerY) / (rect.height / 2));
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-    onHoverEnd();
-  };
+  const handleMouseLeave = () => onHoverEnd();
 
   const isFeaturedLayout = viewMode === 'featured' && project.featured;
 
@@ -443,14 +418,8 @@ function ProjectCard({
         delay: index * 0.1,
         ease: [0.22, 1, 0.36, 1],
       }}
-      onMouseMove={handleMouseMove}
       onMouseEnter={onHoverStart}
       onMouseLeave={handleMouseLeave}
-      style={{
-        rotateX: viewMode === 'grid' ? rotateX : 0,
-        rotateY: viewMode === 'grid' ? rotateY : 0,
-        transformStyle: 'preserve-3d',
-      }}
       className={`group cursor-pointer ${isFeaturedLayout ? 'w-full' : ''}`}
     >
       <motion.div
